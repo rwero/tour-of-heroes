@@ -12,6 +12,9 @@ export class MessageService {
 
   add(message: string) {
     this.messages.push(message);
+        if(this.messages.length >5){
+            this.messages = this.messages.splice(1,5);
+        }
   }
 
   clear() {

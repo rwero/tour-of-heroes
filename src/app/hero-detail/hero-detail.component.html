@@ -1,11 +1,45 @@
-<div *ngIf="hero">
-	<h2>{{hero.name | uppercase}} Details</h2>
-	<div>id: {{hero.id}}</div>
+<style>
+input{
+    padding:.8rem 1rem;
+    border-radius:12px;
+    border:1px solid gray;
+}
+</style>
+<div *ngIf="hero" class="table">
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">
 
-<div>
-	<label for="name">Hero name :</label>
+	{{hero.name | uppercase}} Details
+                </th>
+            </tr>
+        
+        </thead>
+            <tbody>
+                <tr>
+                <td>
+                    id :
+                </td>
+                <td>{{hero.id}}</td>
+            </tr>
+                <tr>
+                <td>Hero name :</td>
+                <td>
 	<input type="text" placeholder="Name" id="name" [(ngModel)]="hero.name" >
-</div>
-</div>
+                </td>
+            </tr>
+                <tr>
+                <td>
+
 <button (click)="goBack()">Go back</button>
+                </td>
+                <td>
 <button (click)="save()">Save</button>
+
+                </td>
+            </tr>
+            </tbody>
+    </table>
+
+</div>

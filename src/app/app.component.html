@@ -1,7 +1,23 @@
-<h3>{{title}}</h3>
-<nav>
-	<a href="" routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
-</nav>
-<router-outlet></router-outlet>
-<app-messages> </app-messages>
+<style>
+	.router-container{
+		height: calc(100vh - 64px - 4rem);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+	}
+    .router, .messages{
+        width:100%;
+    }
+    
+
+</style>
+<app-sidebar [title]="title"></app-sidebar>
+<div class="router-container"> 
+    <div class="router">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="messages"> 
+    <app-messages> </app-messages>
+</div>
+</div>

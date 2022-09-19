@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
 import { Observable, of } from 'rxjs';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -13,20 +14,23 @@ export class HeroService {
 httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+
+    
   constructor(private http:HttpClient,private messageService: MessageService) { }
+
+
   getHeroes():Observable<Hero[]>{
-	const heroes = this.http.get<Hero[]>(this.heroesUrl).pipe(
+	return this.http.get<Hero[]>(this.heroesUrl).pipe(
 		tap(_ => this.log('fetched heroes')),
 		catchError(this.handleError<Hero[]>('getHeroes', []))
-    );;
-	return heroes;
+    );
+
   }
   getHero(id:number):Observable<Hero>{
-	const hero = this.http.get<Hero>(this.heroesUrl+`/${id}`).pipe(
+	 return this.http.get<Hero>(this.heroesUrl+`/${id}`).pipe(
 		tap(_ => this.log(`fetched hero ${id}`)),
 		catchError(this.handleError<Hero> (`getHero ${id}`))
 	);
-	return hero;
 
   }
   updateHero(hero:Hero):Observable<any>{
@@ -48,12 +52,19 @@ httpOptions = {
 	);
   }
   searchHero(term:string):Observable<Hero[]>{
-	if(!term.trim()){return of([])}
+        console.log("searching : ",term)
+	if(!term.trim()){
+      return this.http.get<Hero[]>(this.heroesUrl).pipe(
+                tap(_ => this.log('fetched heroes')),
+                catchError(this.handleError<Hero[]>('getHeroes', []))
+            );
+        }
 
-	return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
 		tap(x =>x.length ?this.log(`Found ${x.length} heros`):this.log(`No heroes matching ${term}`)),
 		catchError(this.handleError<Hero[]>('SearchHeroes',[]))
 	);
+    
   }
 
 

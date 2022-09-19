@@ -1,7 +1,61 @@
+<style>
+.search{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 0;
+}
+	#search-component{
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+	input{
+		min-width: 300px;
+		padding:.8rem 1rem;
+        border-radius:12px;
+        border:1px solid gray;
+
+		
+	}
+</style>
+<div style="width: 100%;">
+    <div class="search">
+        
 <h2>Top Heroes</h2>
 
-<div class="heroes-menu">
-	<a routerLink="/detail/{{hero.id}}" *ngFor="let hero of heroes">{{hero.name}}</a>
+<div id="search-component">
+	<div>
+	<input #searchBox id="search-box" placeholder="Search for heroes" (input)="search(searchBox.value)" />
+  
+	<!-- <ul class="search-result"> -->
+	<!--   <li *ngFor="let hero of heroes$ | async" > -->
+	<!-- 	<a routerLink="/detail/{{hero.id}}"> -->
+	<!-- 	  {{hero.name}} -->
+	<!-- 	</a> -->
+	<!--   </li> -->
+	<!-- </ul> -->
+</div>
+  </div>
+    </div>
+<div class="table">
+	<table>
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let hero of heroes">
+				<td>{{hero.id}}</td>
+				<td>
+	<a routerLink="/detail/{{hero.id}}" >{{hero.name}}</a>
+</td>
+			</tr>
+		</tbody>
+	</table>
 
 </div>
-<app-hero-search></app-hero-search>
+
+</div>

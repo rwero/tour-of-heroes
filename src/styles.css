@@ -1,5 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+	--vz-thead-bg: #f3f6f9;
+	--vz-border-color: #e9ebec;
 
+}
+/* everywhere else */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+}
 
 h1 {
   color: #369;
@@ -12,7 +23,7 @@ h2, h3 {
   font-weight: lighter;
 }
 body {
-  margin: 2em;
+  padding: 2em;
 }
 body, input[type="text"], button {
   color: #333;
@@ -24,8 +35,8 @@ button {
   border-radius: 4px;
   cursor: pointer;
   color: black;
-  font-size: 1.2rem;
-  padding: 1rem;
+  font-size: 1rem;
+  padding: .8rem 1rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
@@ -40,7 +51,40 @@ button:disabled {
   cursor: auto;
 }
 
-/* everywhere else */
-* {
-  font-family: Arial, Helvetica, sans-serif;
+.table {
+	text-align: left;
+	overflow: auto;
+    border-radius:12px;
 }
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+thead {
+	background: var(--vz-thead-bg);
+}
+th,
+td {
+	padding: 0.75rem 0.6rem;
+	white-space: nowrap;
+}
+td {
+	border-bottom: 1px solid var(--vz-border-color);
+}
+td:first-child {
+	padding-left: 1rem;
+}
+
+th:first-child {
+	padding-left: 1rem;
+}
+tr {
+	cursor: default;
+}
+
+td a {
+    color :black;
+    text-decoration:none;
+    
+}
+
